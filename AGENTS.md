@@ -35,7 +35,8 @@ Guidelines for AI agents working on this repository. Read
   `lts`. Updates are made changing the tag (see [docs/updates.md](docs/updates.md)).
   New compose files must be added to [.github/dependabot.yml](.github/dependabot.yml).
 - Keep the container port fixed in `ports` and make only the host port
-  configurable (`"${X_WEB_INTERFACE_PORT}:<container port>"`).
+  configurable (`"${X_WEB_INTERFACE_PORT}:<container port>"`,
+  `"${X_WEB_INTERFACE_HTTPS_PORT}:<container port>"`).
 - Files owned by other users (e.g. databases) are read or written from a helper
   container, not with `sudo`.
 - Volume directories are created empty with `mkdir -p`, without `sudo`. On the
@@ -44,8 +45,11 @@ Guidelines for AI agents working on this repository. Read
 
 ## Ports
 
-- Network services admin panels: `10081-10100`.
-- Applications: from `10101` upwards.
+- Network services admin panels: HTTP `10000-10099`, HTTPS `14000-14099`.
+- Applications: HTTP from `10100` upwards, HTTPS from `14100` upwards.
+- A tool that also serves HTTPS publishes it on its HTTP port plus `4000`
+  (e.g. `10000` and `14000`). Tools that only serve HTTP have no HTTPS port.
+- Ports 80 and 443 of the host are reserved to the ingress.
 - Check the table in [docs/architecture.md](docs/architecture.md) before
   assigning a port and update it afterwards.
 

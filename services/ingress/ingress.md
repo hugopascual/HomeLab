@@ -20,7 +20,7 @@ This setup produce this ports exposed:
 | ----------- | --------------- | ----------------------- |
 | 80          | 80              | HTTP traffic            |
 | 443         | 443             | HTTPS traffic           |
-| 10083       | 81              | Administration Panel    |
+| 10001       | 81              | Administration Panel    |
 
 The proxy does not share any docker network with the other services. It
 forwards the traffic to the port each service publishes on its host, so the
@@ -61,7 +61,7 @@ configure the routing rule through the web administration panel:
     3. **Forward Hostname / IP:** LAN IP of the machine running the service.
        Do not use `localhost`, inside the proxy container it points to the
        container itself.
-    4. **Forward Port:** the port published on that host (e.g. `10101` for
+    4. **Forward Port:** the port published on that host (e.g. `10100` for
        Firefly III).
     5. (Optional) Enable SSL with Let’s Encrypt in the SSL tab.
 
@@ -102,7 +102,7 @@ it and keep the rest internal or behind the VPN.
    and 2).
 
 2. **Port forwarding**: forward TCP ports 80 and 443 to the LAN IP of the
-   ingress host. Never forward the administration panel (10083) nor the ports
+   ingress host. Never forward the administration panel (10001) nor the ports
    published by the services, all the traffic must go through the proxy.
 
     | Protocol | External port | Internal IP           | Internal port |

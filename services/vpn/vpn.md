@@ -138,6 +138,6 @@ make update-vpn
 
 ### Web browser interfaces
 
-- [WGDashboard](http://localhost:10086)
+- [WGDashboard](http://localhost:10002)
 
 ---

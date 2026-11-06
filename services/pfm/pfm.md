@@ -38,6 +38,6 @@ make update-pfm
 
 ### Web browser interfaces
 
-- [Firefly III](http://localhost:10101)
+- [Firefly III](http://localhost:10100)
 
 ---

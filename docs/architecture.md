@@ -21,17 +21,25 @@ each other by service name through the stack default network.
 
 ## Published ports
 
-Administration panels of the network services use the `10081-10100` range.
-Applications start at `10101`.
+Web interfaces are published on these ranges:
 
-| Service                        | Port         | Description                     |
-| ------------------------------ | ------------ | ------------------------------- |
-| Ingress                        | 80, 443      | HTTP / HTTPS traffic            |
-| DNS                            | 53 tcp/udp   | DNS                             |
-| VPN                            | 51820 udp    | WireGuard                       |
-| DNS                            | 10081        | Pi-hole admin panel             |
-| Ingress                        | 10083        | Nginx Proxy Manager admin panel |
-| VPN                            | 10086        | WGDashboard                     |
-| Personal Finance Manager (pfm) | 10101        | Firefly III                     |
+| Type                            | HTTP          | HTTPS         |
+| ------------------------------- | ------------- | ------------- |
+| Network services admin panels   | `10000-10099` | `14000-14099` |
+| Applications                    | `10100-...`   | `14100-...`   |
+
+A tool that also serves HTTPS publishes it on its HTTP port plus `4000`, so it
+is reachable directly without the ingress. Tools that only serve HTTP have no
+HTTPS port. Ports 80 and 443 are reserved to the ingress.
+
+| Service                        | Port         | Description                           |
+| ------------------------------ | ------------ | ------------------------------------- |
+| Ingress                        | 80, 443      | HTTP / HTTPS traffic                  |
+| DNS                            | 53 tcp/udp   | DNS                                   |
+| VPN                            | 51820 udp    | WireGuard                             |
+| DNS                            | 10000, 14000 | Pi-hole admin panel (HTTP, HTTPS)     |
+| Ingress                        | 10001        | Nginx Proxy Manager admin panel       |
+| VPN                            | 10002        | WGDashboard                           |
+| Personal Finance Manager (pfm) | 10100        | Firefly III                           |
 
 Ports are configured in each `services/<service>/.env`.
