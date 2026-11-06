@@ -38,8 +38,8 @@ HTTPS port. Ports 80 and 443 are reserved to the ingress.
 | DNS                            | 53 tcp/udp   | DNS                                   |
 | VPN                            | 51820 udp    | WireGuard                             |
 | DNS                            | 10000, 14000 | Pi-hole admin panel (HTTP, HTTPS)     |
-| Ingress                        | 10001        | Nginx Proxy Manager admin panel       |
-| VPN                            | 10002        | WGDashboard                           |
+| VPN                            | 10001        | WGDashboard                           |
+| Ingress                        | 10002        | Nginx Proxy Manager admin panel       |
 | Personal Finance Manager (pfm) | 10100        | Firefly III                           |
 
 Ports are configured in each `services/<service>/.env`.

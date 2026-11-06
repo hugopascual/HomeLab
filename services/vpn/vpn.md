@@ -132,9 +132,14 @@ Backup and update to the image versions of the repository. See
 make update-vpn
 ```
 
-### Password reset
+### Web interface account
 
-- [Official instructions](https://docs.wgdashboard.dev/reset-wgdashboard-password.html)
+The username and password in `wgdashboard/.env.wgdashboard` are applied on
+every start of the container. To change the password, change it there and run
+`make vpn`. Two-factor authentication is enabled from the WGDashboard settings
+after the first login.
+
+- [Password reset official instructions](https://docs.wgdashboard.dev/reset-wgdashboard-password.html)
 
 ### Web browser interfaces
 
