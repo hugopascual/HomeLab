@@ -60,6 +60,7 @@ Run `make help` for the full list of targets.
 - [Updates](docs/updates.md): image versions, updates and rollback.
 - [Project structure](docs/project-structure.md): layout, environment files and
   how to add a service.
+- [Contributing](docs/contributing.md): commit conventions.
 
 ---
 

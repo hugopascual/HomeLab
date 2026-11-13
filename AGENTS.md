@@ -148,7 +148,8 @@ in a temporary directory and free host ports, and clean it afterwards.
 
 ## Commits
 
-[Conventional Commits](https://www.conventionalcommits.org/):
+[Conventional Commits](https://www.conventionalcommits.org/), as described in
+[docs/contributing.md](docs/contributing.md):
 
 ```text
 <type>(<optional scope>): <description>
