@@ -34,6 +34,7 @@ Every service has the same set of actions:
 make <service>           # Deploy
 make stop-<service>      # Stop
 make clean-<service>     # Stop and remove containers and volumes
+make destroy-<service>   # Clean and delete the images and the volumes data
 make backup-<service>    # Create a backup
 make restore-<service>   # Restore the newest backup
 make update-<service>    # Backup and update to the repository image versions

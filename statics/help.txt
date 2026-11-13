@@ -10,6 +10,8 @@ Service actions (replace <service> with one of the services below):
   make <service>                - Deploy the service
   make stop-<service>           - Stop the service
   make clean-<service>          - Stop and remove containers and volumes
+  make destroy-<service>        - Clean and delete the images and the volumes
+                                  data (backups are kept)
   make backup-<service>         - Create a backup of the service
   make restore-<service>        - Restore the newest backup of the service
                                   (BACKUP=<file> to restore a given one)

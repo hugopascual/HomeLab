@@ -16,6 +16,10 @@ dns_clean(){
     pihole_clean_docker
 }
 
+dns_destroy(){
+    pihole_destroy_docker
+}
+
 dns_backup(){
     pihole_backup_docker
 }
@@ -40,6 +44,9 @@ case "$action" in
 	clean)
 		dns_clean
 		;;
+	destroy)
+		dns_destroy
+		;;
 	backup)
 		dns_backup
 		;;
@@ -50,7 +57,7 @@ case "$action" in
 		dns_update
 		;;
 	*)
-		echo "Usage: $0 [deploy|stop|clean|backup|restore|update]" >&2
+		echo "Usage: $0 [deploy|stop|clean|destroy|backup|restore|update]" >&2
 		exit 1
 		;;
 esac

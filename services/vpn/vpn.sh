@@ -16,6 +16,10 @@ vpn_clean(){
 	wgdashboard_clean_docker
 }
 
+vpn_destroy(){
+	wgdashboard_destroy_docker
+}
+
 vpn_backup(){
 	wgdashboard_backup_docker
 }
@@ -40,6 +44,9 @@ case "$action" in
 	clean)
 		vpn_clean
 		;;
+	destroy)
+		vpn_destroy
+		;;
 	backup)
 		vpn_backup
 		;;
@@ -50,7 +57,7 @@ case "$action" in
 		vpn_update
 		;;
 	*)
-		echo "Usage: $0 [deploy|stop|clean|backup|restore|update]" >&2
+		echo "Usage: $0 [deploy|stop|clean|destroy|backup|restore|update]" >&2
 		exit 1
 		;;
 esac

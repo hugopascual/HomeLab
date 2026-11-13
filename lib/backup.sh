@@ -179,6 +179,33 @@ docker_volumes_restore(){
 }
 
 ##
+# Delete the volumes directory of a tool. `docker compose down --volumes` only
+# removes the docker volumes, the data of their bind directories stays on the
+# host. Files owned by other users are deleted from a helper container.
+# $1 Volumes directory
+##
+docker_volumes_delete(){
+    local volumes_path="$1"
+
+    if [[ -z "$volumes_path" || "$volumes_path" == "/" ]]; then
+        echo "ERROR: invalid volumes directory '$volumes_path'" >&2
+        return 1
+    fi
+
+    if [[ ! -d "$volumes_path" ]]; then
+        return 0
+    fi
+
+    echo "Deleting volumes directory $volumes_path..."
+    docker run --rm \
+        -v "$volumes_path:/target" \
+        "$BACKUP_HELPER_IMAGE" \
+        find /target -mindepth 1 -delete || return 1
+
+    rmdir "$volumes_path"
+}
+
+##
 # Restore the backup given by name or, if empty, the newest volumes backup.
 # Export backups are restored with the given import function.
 # $1 Compose project

@@ -16,6 +16,10 @@ pfm_clean(){
     fireflyiii_clean_docker
 }
 
+pfm_destroy(){
+    fireflyiii_destroy_docker
+}
+
 pfm_backup(){
     fireflyiii_backup_docker
 }
@@ -40,6 +44,9 @@ case "$action" in
 	clean)
 		pfm_clean
 		;;
+	destroy)
+		pfm_destroy
+		;;
 	backup)
 		pfm_backup
 		;;
@@ -50,7 +57,7 @@ case "$action" in
 		pfm_update
 		;;
 	*)
-		echo "Usage: $0 [deploy|stop|clean|backup|restore|update]" >&2
+		echo "Usage: $0 [deploy|stop|clean|destroy|backup|restore|update]" >&2
 		exit 1
 		;;
 esac

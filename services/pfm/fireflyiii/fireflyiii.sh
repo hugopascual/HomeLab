@@ -76,6 +76,17 @@ fireflyiii_clean_docker(){
         down --volumes
 }
 
+# Remove the containers, volumes, images and the volumes directory
+fireflyiii_destroy_docker(){
+    docker compose \
+        -p "$FIREFLYIII_COMPOSE_PROJECT" \
+        --project-directory "$FIREFLYIII_FOLDER" \
+        -f "$FIREFLYIII_FOLDER/docker-compose.yml" \
+        down --volumes --rmi all || exit 1
+
+    docker_volumes_delete "$FIREFLYIII_BASE_VOLUMES_PATH" || exit 1
+}
+
 # Database dump and uploads export
 fireflyiii_export_docker(){
     load_fireflyiii_env || return 1

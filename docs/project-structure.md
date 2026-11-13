@@ -58,9 +58,15 @@ Each `services/<service>/<service>.sh` receives one action:
 | `deploy`  | `make <service>`         |
 | `stop`    | `make stop-<service>`    |
 | `clean`   | `make clean-<service>`   |
+| `destroy` | `make destroy-<service>` |
 | `backup`  | `make backup-<service>`  |
 | `restore` | `make restore-<service>` |
 | `update`  | `make update-<service>`  |
+
+`clean` removes the containers and the docker volumes, but the data of the
+bind volumes stays in `$<TOOL>_BASE_VOLUMES_PATH` and is used again on the
+next deploy. `destroy` removes every trace of the deployment: it runs `clean`,
+deletes the images and the volumes directory. Backups are kept.
 
 The service script sources the scripts of its tools and delegates each action
 to them. Docker based tools run their own compose file as an independent

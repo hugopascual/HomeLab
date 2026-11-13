@@ -65,6 +65,17 @@ pihole_clean_docker(){
         down --volumes
 }
 
+# Remove the containers, volumes, images and the volumes directory
+pihole_destroy_docker(){
+    docker compose \
+        -p "$PIHOLE_COMPOSE_PROJECT" \
+        --project-directory "$PIHOLE_FOLDER" \
+        -f "$PIHOLE_FOLDER/docker-compose.yml" \
+        down --volumes --rmi all || exit 1
+
+    docker_volumes_delete "$PIHOLE_BASE_VOLUMES_PATH" || exit 1
+}
+
 # Teleporter export (config, lists, groups, clients and DHCP leases)
 pihole_export_docker(){
     local backup_name="export-$(backup_timestamp).zip"

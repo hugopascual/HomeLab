@@ -15,6 +15,10 @@ external_ddns_clean(){
 	duckdns_clean_docker
 }
 
+external_ddns_destroy(){
+	duckdns_destroy_docker
+}
+
 # Duck DNS has no persistent data, its configuration is the env file
 external_ddns_backup(){
 	echo "External DDNS has no data to back up, skipping backup"
@@ -40,6 +44,9 @@ case "$action" in
 	clean)
 		external_ddns_clean
 		;;
+	destroy)
+		external_ddns_destroy
+		;;
 	backup)
 		external_ddns_backup
 		;;
@@ -50,7 +57,7 @@ case "$action" in
 		external_ddns_update
 		;;
 	*)
-		echo "Usage: $0 [deploy|stop|clean|backup|restore|update]" >&2
+		echo "Usage: $0 [deploy|stop|clean|destroy|backup|restore|update]" >&2
 		exit 1
 		;;
 esac

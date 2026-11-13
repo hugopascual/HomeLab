@@ -56,6 +56,17 @@ wgdashboard_clean_docker(){
         down --volumes
 }
 
+# Remove the containers, volumes, images and the volumes directory
+wgdashboard_destroy_docker(){
+    docker compose \
+        -p "$WGDASHBOARD_COMPOSE_PROJECT" \
+        --project-directory "$WGDASHBOARD_FOLDER" \
+        -f "$WGDASHBOARD_FOLDER/docker-compose.yml" \
+        down --volumes --rmi all || exit 1
+
+    docker_volumes_delete "$WGDASHBOARD_BASE_VOLUMES_PATH" || exit 1
+}
+
 wgdashboard_backup_docker(){
     if ! docker_project_deployed "$WGDASHBOARD_COMPOSE_PROJECT"; then
         echo "WGDashboard is not deployed, skipping backup"

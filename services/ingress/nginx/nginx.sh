@@ -34,6 +34,16 @@ nginx_proxy_cleanup_docker(){
         down --volumes
 }
 
+# Remove the containers, volumes, images and the volumes directory
+nginx_proxy_destroy_docker(){
+    docker compose \
+        -p "$NGINX_PROXY_COMPOSE_PROJECT" \
+        -f "$NGINX_PROXY_FOLDER/docker-compose.yml" \
+        down --volumes --rmi all || exit 1
+
+    docker_volumes_delete "$NGINX_PROXY_BASE_VOLUMES_PATH" || exit 1
+}
+
 nginx_proxy_backup_docker(){
     if ! docker_project_deployed "$NGINX_PROXY_COMPOSE_PROJECT"; then
         echo "Nginx Proxy Manager is not deployed, skipping backup"

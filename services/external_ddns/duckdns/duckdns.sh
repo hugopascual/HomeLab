@@ -51,3 +51,12 @@ duckdns_clean_docker(){
         -f "$DUCKDNS_FOLDER/docker-compose.yml" \
         down --volumes
 }
+
+# Remove the containers, volumes and images
+duckdns_destroy_docker(){
+    docker compose \
+        -p "$DUCKDNS_COMPOSE_PROJECT" \
+        --project-directory "$DUCKDNS_FOLDER" \
+        -f "$DUCKDNS_FOLDER/docker-compose.yml" \
+        down --volumes --rmi all
+}

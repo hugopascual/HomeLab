@@ -39,6 +39,9 @@ Guidelines for AI agents working on this repository. Read
   `"${X_WEB_INTERFACE_HTTPS_PORT}:<container port>"`).
 - Files owned by other users (e.g. databases) are read or written from a helper
   container, not with `sudo`.
+- `clean` removes the containers and volumes, keeping the data of the bind
+  volumes. `destroy` also removes the images and deletes the volumes
+  directory with `docker_volumes_delete`.
 - Volume directories are created empty with `mkdir -p`, without `sudo`. On the
   first mount Docker copies into the empty volume the image directory with its
   owner, so containers that do not run as root can write on it.
@@ -57,8 +60,8 @@ Guidelines for AI agents working on this repository. Read
 
 - Layout: `services/<service>/<service>.sh` plus one folder per tool with its
   `<tool>.sh`, `docker-compose.yml` and optional `.env.<tool>`.
-- Service scripts accept `deploy`, `stop`, `clean`, `backup`, `restore` and
-  `update`, and delegate them to functions of their tools
+- Service scripts accept `deploy`, `stop`, `clean`, `destroy`, `backup`,
+  `restore` and `update`, and delegate them to functions of their tools
   (`<tool>_deploy_docker`, `<tool>_update_docker`...). `update` pulls the
   images and redeploys; `make` makes a backup before it.
 - Adding the service to `SERVICES` in the `makefile` creates its targets. It

@@ -7,6 +7,7 @@ SERVICES := external_ddns dns vpn ingress torrent pfm
 		$(SERVICES) \
 		$(addprefix stop-,$(SERVICES)) \
 		$(addprefix clean-,$(SERVICES)) \
+		$(addprefix destroy-,$(SERVICES)) \
 		$(addprefix backup-,$(SERVICES)) \
 		$(addprefix restore-,$(SERVICES)) \
 		$(addprefix update-,$(SERVICES))
@@ -53,6 +54,10 @@ $(addprefix stop-,$(SERVICES)): stop-%: check
 
 $(addprefix clean-,$(SERVICES)): clean-%: check
 	@$(RUN) service $* clean $(TO_LOG)
+
+# Clean and delete the images and the volumes data. Backups are kept
+$(addprefix destroy-,$(SERVICES)): destroy-%: check
+	@$(RUN) service $* destroy $(TO_LOG)
 
 $(addprefix backup-,$(SERVICES)): backup-%: check
 	@$(RUN) service $* backup $(TO_LOG)
