@@ -28,7 +28,7 @@ services:
     # To make this work, set STATIC_CRON_TOKEN in your .env file or as an environment variable
     # The STATIC_CRON_TOKEN must be *exactly* 32 characters long
     #
-    image: alpine:3.24.3
+    image: alpine:3.24.4
     restart: always
     container_name: fireflyiii_cron
     env_file:
